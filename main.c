@@ -36,3 +36,51 @@ typedef struct {
         TriangleParams triangle;
     } data;
 } Shape;
+Shape shapes[MAX_SHAPES];
+int shape_count = 0;
+// Global canvas buffer
+char canvas[ROWS][COLS];
+/* ==========================================
+ * Canvas Drawing Algorithms
+ * ========================================== */
+/**
+ * Fills the canvas with the background character '_'
+ */
+void canvas_clear(void) {
+    for (int y = 0; y < ROWS; y++) {
+        for (int x = 0; x < COLS; x++) {
+            canvas[y][x] = '_';
+        }
+    }
+}
+/**
+ * Displays the canvas on the standard output with grid coordinate headers.
+ */
+void canvas_display(void) {
+    printf("\n");
+    // Print column coordinate headers (tens digit)
+    printf("   ");
+    for (int x = 0; x < COLS; x++) {
+        if (x % 10 == 0) {
+            printf("%d", x / 10);
+        } else {
+            printf(" ");
+        }
+    }
+    printf("\n");
+    // Print column coordinate headers (ones digit)
+    printf("   ");
+    for (int x = 0; x < COLS; x++) {
+        printf("%d", x % 10);
+    }
+    printf("\n");
+    // Print rows with row header
+    for (int y = 0; y < ROWS; y++) {
+        printf("%2d ", y);
+        for (int x = 0; x < COLS; x++) {
+            putchar(canvas[y][x]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
