@@ -129,3 +129,100 @@ static void draw_circle_points(int cx, int cy, int x, int y) {
         }
     }
 }
+**
+ * Draws a circle outline using Midpoint Circle algorithm.
+ */
+void canvas_draw_circle(int cx, int cy, int r) {
+    if (r < 0) return;
+    int x = 0;
+    int y = r;
+    int d = 3 - 2 * r;
+    draw_circle_points(cx, cy, x, y);
+    while (y >= x) {
+        x++;
+        if (d > 0) {
+            y--;
+            d = d + 4 * (x - y) + 10;
+        } else {
+            d = d + 4 * x + 6;
+        }
+        draw_circle_points(cx, cy, x, y);
+    }
+}
+/**
+ * Draws a triangle outline by connecting three vertices.
+ */
+void canvas_draw_triangle(int x1, int y1, int x2, int y2, int x3, int y3) {
+    canvas_draw_line(x1, y1, x2, y2);
+    canvas_draw_line(x2, y2, x3, y3);
+    canvas_draw_line(x3, y3, x1, y1);
+}
+/* ==========================================
+ * Shape List Operations
+ * ========================================== */
+void shapes_print_list(void) {
+    if (shape_count == 0) {
+        printf("   No objects in the list.\n");
+        return;
+    }
+    printf("--- Current Objects ---\n");
+    for (int i = 0; i < shape_count; i++) {
+        printf("  [%d] ", i + 1);
+        switch (shapes[i].type) {
+            case SHAPE_LINE:
+                printf("Line: (%d, %d) to (%d, %d)\n",
+                       shapes[i].data.line.x1, shapes[i].data.line.y1,
+                       shapes[i].data.line.x2, shapes[i].data.line.y2);
+                break;
+            case SHAPE_RECTANGLE:
+                printf("Rectangle: Corner 1 (%d, %d), Corner 2 (%d, %d)\n",
+                       shapes[i].data.rect.x1, shapes[i].data.rect.y1,
+                       shapes[i].data.rect.x2, shapes[i].data.rect.y2);
+                break;
+            case SHAPE_CIRCLE:
+                printf("Circle: Center (%d, %d), Radius %d\n",
+                       shapes[i].data.circle.cx, shapes[i].data.circle.cy,
+                       shapes[i].data.circle.r);
+                break;
+            case SHAPE_TRIANGLE:
+                printf("Triangle: V1(%d, %d), V2(%d, %d), V3(%d, %d)\n",
+                       shapes[i].data.triangle.x1, shapes[i].data.triangle.y1,
+                       shapes[i].data.triangle.x2, shapes[i].data.triangle.y2,
+                       shapes[i].data.triangle.x3, shapes[i].data.triangle.y3);
+                break;
+        }
+    }
+}
+void shapes_render(void) {
+    canvas_clear();
+    for (int i = 0; i < shape_count; i++) {
+        switch (shapes[i].type) {
+            case SHAPE_LINE:
+                canvas_draw_line(shapes[i].data.line.x1, shapes[i].data.line.y1,
+                                 shapes[i].data.line.x2, shapes[i].data.line.y2);
+                break;
+            case SHAPE_RECTANGLE:
+                canvas_draw_rect(shapes[i].data.rect.x1, shapes[i].data.rect.y1,
+                                 shapes[i].data.rect.x2, shapes[i].data.rect.y2);
+                break;
+            case SHAPE_CIRCLE:
+                canvas_draw_circle(shapes[i].data.circle.cx, shapes[i].data.circle.cy,
+                                   shapes[i].data.circle.r);
+                break;
+            case SHAPE_TRIANGLE:
+                canvas_draw_triangle(shapes[i].data.triangle.x1, shapes[i].data.triangle.y1,
+                                     shapes[i].data.triangle.x2, shapes[i].data.triangle.y2,
+                                     shapes[i].data.triangle.x3, shapes[i].data.triangle.y3);
+                break;
+        }
+    }
+}
+void shapes_delete(int index) {
+    if (index < 0 || index >= shape_count) {
+        return;
+    }
+    for (int i = index; i < shape_count - 1; i++) {
+        shapes[i] = shapes[i + 1];
+    }
+    shape_count--;
+}
