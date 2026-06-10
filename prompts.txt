@@ -1,0 +1,86 @@
+PROMPTS
+
+(*) Problem Statement: Design and implement a menu-driven 2D Graphics Editor in C using a 2D character array as the drawing canvas.
+ The canvas should initially be filled with the character _ (underscore), 
+and graphical objects should be drawn using the character * (asterisk).
+
+Write functions to draw a circle, rectangle, line, and triangle.
+You should be able to
+add objects to the picture,
+delete objects from the picture, and
+modify objects in the picture.
+Use a 2d array of characters to store the picture.
+Write a function to display the picture.
+Additionally, you can use the ncurses package to create menus and draw pictures.
+Generate code for this
+
+(*) combine evry file together and make it single file,Vs code.But should the folder be empty to fill it in this form.
+Now I have selected and entered the destination and now the folder is created next how to add code in it.
+Hey now that I have add the code inthe folder named 2d graphics in vs code what should I run in terminal so that the code is saved in git hub.
+This is my output what should I do next to add my code to the repository or check whether the repository is linked to the file 2D graphics connected to it or not
+Yeah I got the output of changes committed to main .c next tell me to connect GitHub.
+
+(*) But in my GitHub inside the main .c inam unable to see the codes inside it.
+If I run git status the output is
+On branch main
+Your branch is up to date with origin /main
+Changes not stagd for commit....no changes added to commit.
+For git add it's showing nothing specified.After git push should I add main .c  to itgit add .main .c
+git commit -m "Updated code"
+git push
+Yes, now I got the codes in main .c after running the above 3 commands and I have got the output of entire program and also attached everything to the GitHub .
+
+
+OUTPUTS OF THE PROMPTS
+
+(*)  Program fot  the problem statement.
+
+2D GRAPHICS MINI PROJECT/
+│
+├── main.c
+git push -u origin main
+git status
+git add .
+git commit -m "Added drawing functions.
+git push
+git remote -v
+On branch main
+Your branch is up to date with 'origin/main'.
+nothing to commit, working tree clean
+Ctrl + S--to save file.
+To save and run:
+Press Ctrl + S once.
+Close that merge-message tab (click the X on the tab).
+Open a new terminal in VS Code (Terminal → New Terminal).
+Run:
+Verify it
+Open your GitHub repository page.
+Refresh the page (F5).
+You should now see:
+README.md
+main.c
+Your latest commit message.
+That means your workflow is now working:
+PowerShell
+git add .
+git commit -m "Updated code"
+git push
+and the fact that you can now see the code in main.c on GitHub confirms that:
+ Git is initialized correctly
+The repository is connected to GitHub
+Commits are working
+ Pushes are working
+Your code is backed up online.
+You actually worked through several real Git issues that beginners commonly hit:,Opened the wrong folder,Initialized Git in the wrong location,Connected a remote repository
+Resolved the README merge conflict
+Committed code
+Pushed to GitHub
+Learned why unsaved files don't get uploaded.
+
+Conclusion
+
+This mini project successfully implements a menu-driven 2D Graphics Editor in C using a two-dimensional character array as the drawing canvas.
+The application allows users to create, display, modify, and delete graphical objects such as lines, rectangles, circles, and triangles.
+Through this project, concepts of arrays, structures, functions, algorithms, and user interaction were applied effectively.
+The final program produces the expected graphical output and demonstrates the fundamentals of computer graphics in a simple text-based environment.LLM-assisted 
+development was used to improve productivity, understand implementation techniques, and accelerate problem-solving while ensuring the final code was tested, integrated, and executed successfully.
