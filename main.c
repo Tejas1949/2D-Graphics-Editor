@@ -129,9 +129,9 @@ static void draw_circle_points(int cx, int cy, int x, int y) {
         }
     }
 }
-**
- * Draws a circle outline using Midpoint Circle algorithm.
- */
+
+//Draws a circle outline using Midpoint Circle algorithm.
+ 
 void canvas_draw_circle(int cx, int cy, int r) {
     if (r < 0) return;
     int x = 0;
